@@ -61,3 +61,90 @@ def Bubble_Sort_best(nums):
         return
 Bubble_Sort_best(nums)
 print(nums)
+
+
+# Insertion Sort
+from array import *
+nums = array("i",[5,7,8,40,1,6,9,2])
+
+def Insertion_sort(nums):
+    n = len(nums)
+    for i in range(1,n):
+        key = nums[i]
+        j = i-1
+
+        while j>=0 and nums[j] > key:
+            nums[j+1] = nums[j]
+            j-=1
+        nums[j+1] = key
+
+Insertion_sort(nums)
+print(nums)
+
+
+
+# Merge sort
+# Mergetwo sorted array
+from array import *
+left = array("i",[1,2,3,4])
+right = array("i", [1,1,3,4,5,6,7])
+
+def merge_sorted_array(left,right):
+    result=[]
+    i,j =0,0
+    while i<len(left) and j<len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i+=1
+        else:
+            result.append(right[j])
+            j+=1
+        
+    
+    while i<len(left):
+        result.append(left[i])
+        i+=1
+    while j<len(right):
+        result.append(right[j])
+        j+=1
+    return result
+    
+print(merge_sorted_array(left,right))
+
+
+# Merge sort an unsorted array(Real merge sort)
+from array import *
+arr = array("i",[3,1,2,4,1,5,2,6,4])
+
+def merge_sorted_array(left,right):
+    result=[]
+    i,j =0,0
+    while i<len(left) and j<len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i+=1
+        else:
+            result.append(right[j])
+            j+=1
+        
+    
+    while i<len(left):
+        result.append(left[i])
+        i+=1
+    while j<len(right):
+        result.append(right[j])
+        j+=1
+    return result
+    
+def merge_sort(arr):
+    if len(arr)<=1:
+        return arr
+    mid = len(arr)//2
+    left_arr = arr[:mid]
+    right_arr = arr[mid:]
+    left = merge_sort(left_arr)
+    right = merge_sort(right_arr)
+
+    return(merge_sorted_array(left,right))
+
+print(merge_sort(arr))
