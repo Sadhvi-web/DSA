@@ -148,3 +148,54 @@ def merge_sort(arr):
     return(merge_sorted_array(left,right))
 
 print(merge_sort(arr))
+
+
+
+# Quick Sort
+# First we will see partioning means how to place first pivot element in its correct place
+from array import *
+nums = array("i",[3,1,2,4,1,5,2,6,4])
+def partition(nums,low,high):
+    pivot = nums[low]
+    i=low
+    j=high
+    while i<j:
+        while nums[i]<=pivot and i<=high-1:
+            i+=1
+        while nums[j]>=pivot and j>=low+1:
+            j-=1
+        if i<j:
+            nums[i],nums[j] = nums[j],nums[i]
+        
+    nums[low],nums[j]=nums[j],nums[low]
+    return j
+
+print(partition(nums,0,len(nums)-1))
+print(nums)
+
+# Now we will write the full quick sort code
+from array import *
+nums = array("i",[3,1,2,4,1,5,2,6,4])
+def partition(nums,low,high):
+    pivot = nums[low]
+    i=low
+    j=high
+    while i<j:
+        while nums[i]<=pivot and i<=high-1:
+            i+=1
+        while nums[j]>=pivot and j>=low+1:
+            j-=1
+        if i<j:
+            nums[i],nums[j] = nums[j],nums[i]
+        
+    nums[low],nums[j]=nums[j],nums[low]
+    return j
+
+def quick_sort(nums,low,high):
+    if low<high:
+        p_ind=partition(nums,low,high)
+        quick_sort(nums,low,p_ind-1)
+        quick_sort(nums,p_ind+1,high)
+
+quick_sort(nums,0,len(nums)-1)
+print(nums)
