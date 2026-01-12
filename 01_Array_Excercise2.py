@@ -43,14 +43,12 @@ print('Second largest array : ',sec_larg)
 from array import *
 a= array('i',[45,89,21,63,52,74,85,25])
 
-largest = float('-inf')
+largest = max(a)
 sec_larg = float('-inf')
 for i in range(len(a)):
-    if a[i] > largest:
-        largest = a[i]
-    elif a[i] > sec_larg and a[i] != largest:
+    if a[i] > sec_larg and a[i] != largest:
         sec_larg = a[i]     
-print(sec_larg)
+print('Second largest :- ',sec_larg)
 # T.C - O(N+N) == O(N) but 2 pass
 # S.C - O(1)
 
