@@ -294,38 +294,108 @@
 
 
 
-# Question 11 :- Union of two sorted array (Merge Two Sorted arrays without Duplicates)
-# Method 1 (merge both sorted array and then remove duplicates from that sorted array)
+# # Question 11 :- Union of two sorted array (Merge Two Sorted arrays without Duplicates)
+# # Method 1 (merge both sorted array and then remove duplicates from that sorted array)
+# from array import *
+# arr1= array('i',[1,2,3,4,5])
+# arr2= array('i',[2,3,4,4,5])
+
+# # Step 1: Merge
+# i=0
+# j=0
+# result = []
+# while i<len(arr1) and j<len(arr2):
+#     if arr1[i] < arr2[j]:
+#         result.append(arr1[i])
+#         i +=1
+#     else:
+#         result.append(arr2[j])
+#         j+=1
+
+# while i<len(arr1):
+#     result.append(arr1[i])
+#     i +=1
+# while j<len(arr2):
+#     result.append(arr2[j])
+#     j +=1
+
+# # Step 2: remove duplicates from result array
+# i = 0
+# for j in range(1, len(result)):
+#     if result[j] != result[i]:
+#         i += 1
+#         result[i] = result[j]
+# del result[i+1:]
+# print(result)
+# # T.C - O(N + M)
+# # S.C - O(N + M)
+
+# # Method 2 
+# from array import *
+# arr1= array('i',[1,2,3,4,5])
+# arr2= array('i',[2,3,4,4,5,7,8,9])
+
+# n=len(arr1)
+# m=len(arr2)
+# result=[]
+# i=j=0
+# while i<n and j<m:
+#     if arr1[i] <= arr2[j]:
+#         if len(result) == 0 or result[-1] != arr1[i]:
+#             result.append(arr1[i])
+#         i+=1
+#     else:
+#         if len(result) == 0 or result[-1] != arr2[j]:
+#             result.append(arr2[j])
+#         j+=1
+
+# while i<n:
+#     if len(result) == 0 or result[-1] != arr1[i]:
+#             result.append(arr1[i])
+#     i+=1
+    
+# while j<m:
+#     if len(result) == 0 or result[-1] != arr2[j]:
+#             result.append(arr2[j])
+#     j+=1
+    
+# print(result)
+# # T.C - O(N + M)
+# # S.C - O(N + M)
+
+
+
+# Question 12 :- Find the missing number in an array
+# Method1 (brute approach)
 from array import *
-arr1= array('i',[1,2,3,4,5])
-arr2= array('i',[2,3,4,4,5])
+a= array('i',[1,3,4,5])
+for i in range(1,len(a) +1):
+     if i not in a:
+        print(i)
+        break   
+# T.C - O(N²)
+# S.C - O(1)
 
-# Step 1: Merge
-i=0
-j=0
-result = []
-while i<len(arr1) and j<len(arr2):
-    if arr1[i] < arr2[j]:
-        result.append(arr1[i])
-        i +=1
-    else:
-        result.append(arr2[j])
-        j+=1
+# Method 2 (better)
+from array import *
+a= array('i',[1,3,4,5])
+freq = {}       #Dictionary
+for i in range(1,len(a) +1):
+     freq[i] = 0
+for arr in a:
+    freq[arr] = 1
+for k,v in freq.items():
+    if v == 0:
+        print(k)
+# T.C - O(3N) ~ O(N)
+# S.C - O(N)
 
-while i<len(arr1):
-    result.append(arr1[i])
-    i +=1
-while j<len(arr2):
-    result.append(arr2[j])
-    j +=1
-
-# Step 2: remove duplicates from result array
-i = 0
-for j in range(1, len(result)):
-    if result[j] != result[i]:
-        i += 1
-        result[i] = result[j]
-del result[i+1:]
-print(result)
-# T.C - O(N + M)
-# S.C - O(N + M)
+# Method 3 (Optimal)
+from array import *
+a= array('i',[1,3,4,5])
+n=len(a)
+expected_sum = (n+1)*(n+2)//2
+actual_sum = sum(a)
+print(expected_sum - actual_sum)
+# T.C - O(N)
+# S.C - O(1)
