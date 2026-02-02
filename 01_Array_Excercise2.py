@@ -1,3 +1,4 @@
+# Easy
 # # Question 1 :- find the largest element element in an array
 # # method 1
 # from array import *
@@ -365,37 +366,89 @@
 
 
 
-# Question 12 :- Find the missing number in an array
-# Method1 (brute approach)
+# # Question 12 :- Find the missing number in an array
+# # Method1 (brute approach)
+# from array import *
+# a= array('i',[1,3,4,5])
+# for i in range(1,len(a) +1):
+#      if i not in a:
+#         print(i)
+#         break   
+# # T.C - O(N²)
+# # S.C - O(1)
+
+# # Method 2 (better)
+# from array import *
+# a= array('i',[1,3,4,5])
+# freq = {}       #Dictionary
+# for i in range(1,len(a) +1):
+#      freq[i] = 0
+# for arr in a:
+#     freq[arr] = 1
+# for k,v in freq.items():
+#     if v == 0:
+#         print(k)
+# # T.C - O(3N) ~ O(N)
+# # S.C - O(N)
+
+# # Method 3 (Optimal)
+# from array import *
+# a= array('i',[1,3,4,5])
+# n=len(a)
+# expected_sum = (n+1)*(n+2)//2
+# actual_sum = sum(a)
+# print(expected_sum - actual_sum)
+# # T.C - O(N)
+# # S.C - O(1)
+
+
+
+# # Question 13 :- Count Maximum Consecutive One's in the array
+# from array import *
+# a = array('i',[1, 1, 0, 1, 1, 1])
+# count = 0
+# max_count = 0
+# for i in range(0,len(a)):
+#     if a[i]==1:
+#         count +=1
+#     else:
+#         max_count = max(max_count,count)
+#         count=0
+# print(max(max_count,count))
+# # T.C - O(N)
+# # S.C - O(1)
+
+
+
+# Question 14 :- Two Sum : Check if a pair with given sum exists in Array
+# Method 1 :- Brute force Approach
 from array import *
-a= array('i',[1,3,4,5])
-for i in range(1,len(a) +1):
-     if i not in a:
-        print(i)
-        break   
+a=array('i',[2,6,5,8,11])
+target = 14
+
+for i in range(len(a)):
+    for j in range(i+1,len(a)):
+        if a[i] + a[j] == target:
+            print("Pair found at indices:", i,j)
+            break
+
 # T.C - O(N²)
 # S.C - O(1)
 
-# Method 2 (better)
+# Method 2 :- Optimal Approach
 from array import *
-a= array('i',[1,3,4,5])
-freq = {}       #Dictionary
-for i in range(1,len(a) +1):
-     freq[i] = 0
-for arr in a:
-    freq[arr] = 1
-for k,v in freq.items():
-    if v == 0:
-        print(k)
-# T.C - O(3N) ~ O(N)
-# S.C - O(N)
+a=array('i',[2,6,5,8,11])
+target = 14
+hash_map = {}
+for i in range(len(a)):
+    remaining = target - a[i]
+    if remaining in hash_map:
+        print("Pair found at indices:", hash_map[remaining],i)
+        break
+    hash_map[a[i]] = i
 
-# Method 3 (Optimal)
-from array import *
-a= array('i',[1,3,4,5])
-n=len(a)
-expected_sum = (n+1)*(n+2)//2
-actual_sum = sum(a)
-print(expected_sum - actual_sum)
-# T.C - O(N)
-# S.C - O(1)
+# T.C
+# Best Case     : O(1)   (pair found immediately)
+# Average Case  : O(n)
+# Worst Case    : O(n²)  (due to hash collisions)
+# S.C = O(N)
