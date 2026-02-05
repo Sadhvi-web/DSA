@@ -420,35 +420,82 @@
 
 
 
-# Question 14 :- Two Sum : Check if a pair with given sum exists in Array
-# Method 1 :- Brute force Approach
+# # Question 14 :- Two Sum : Check if a pair with given sum exists in Array
+# # Method 1 :- Brute force Approach
+# from array import *
+# a=array('i',[2,6,5,8,11])
+# target = 14
+
+# for i in range(len(a)):
+#     for j in range(i+1,len(a)):
+#         if a[i] + a[j] == target:
+#             print("Pair found at indices:", i,j)
+#             break
+
+# # T.C - O(N²)
+# # S.C - O(1)
+
+# # Method 2 :- Optimal Approach
+# from array import *
+# a=array('i',[2,6,5,8,11])
+# target = 14
+# hash_map = {}
+# for i in range(len(a)):
+#     remaining = target - a[i]
+#     if remaining in hash_map:
+#         print("Pair found at indices:", hash_map[remaining],i)
+#         break
+#     hash_map[a[i]] = i
+
+# # T.C
+# # Best Case     : O(1)   (pair found immediately)
+# # Average Case  : O(n)
+# # Worst Case    : O(n²)  (due to hash collisions)
+# # S.C = O(N)
+
+
+
+# # Question 15 :- Sort an array of 0s, 1s and 2s
+# Method 1 : Using built-in sort (General sorting)
 from array import *
-a=array('i',[2,6,5,8,11])
-target = 14
+a = array('i',[1, 0, 2, 1, 0])
+sorted_arr1 = sorted(a)
+print(sorted_arr1)
+# T.C - O(NlogN)
+# S.C - O(1)
 
+# Method 2 : Bubble Sort style
+from array import *
+a = array('i',[1, 0, 2, 1, 0])
 for i in range(len(a)):
-    for j in range(i+1,len(a)):
-        if a[i] + a[j] == target:
-            print("Pair found at indices:", i,j)
-            break
-
+    for j in range(len(a)-i-1):
+        if a[j]>a[j+1]:
+            a[j],a[j+1] = a[j+1],a[j]
+print(a)
 # T.C - O(N²)
 # S.C - O(1)
 
-# Method 2 :- Optimal Approach
+# Method 3 : Counting Method (Frequency Count)
 from array import *
-a=array('i',[2,6,5,8,11])
-target = 14
-hash_map = {}
+a = array('i',[1, 0, 2, 1, 0])
+count0 = 0
+count1 = 0
+count2 = 0
 for i in range(len(a)):
-    remaining = target - a[i]
-    if remaining in hash_map:
-        print("Pair found at indices:", hash_map[remaining],i)
-        break
-    hash_map[a[i]] = i
-
-# T.C
-# Best Case     : O(1)   (pair found immediately)
-# Average Case  : O(n)
-# Worst Case    : O(n²)  (due to hash collisions)
-# S.C = O(N)
+    if a[i] == 0:
+        count0 += 1
+    elif a[i] == 1:
+        count1 += 1
+    else:
+        count2 += 1
+index = 0
+for _ in range(count0):
+    a[index] = 0
+    index +=1
+for _ in range(count1):
+    a[index] = 1
+    index +=1
+for _ in range(count2):
+    a[index] = 2
+    index +=1
+print(a)
